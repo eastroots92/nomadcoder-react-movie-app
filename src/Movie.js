@@ -3,42 +3,36 @@ import PropTypes from 'prop-types';
 import './Movie.css';
 import LinesEllipsis from 'react-lines-ellipsis'
 
-function Movie({title, poster, genres, synopsis}) {
-    return (
-        <div className="movie-layout">
-            <div className="movie-columns">
-                <MoviePoster poster={poster} alt={title} />
-            </div>
-            <div className="movie-columns">
-                <h1>{title}</h1>
-                <div className="movie-genres">
-                    { genres.map((genre, index) => <MovieGenre genre={genre} key={index} /> )}
-                </div>
-                <p className="Movie-synopsis">
-                    <LinesEllipsis
-                        text= {synopsis}
-                        maxLine= '3'
-                        ellipsis= '...'
-                        trimRight
-                        basedOn= 'letters'
-                    />
-                </p>
-            </div>
+const Movie = ({title, poster, genres, synopsis}) => (
+    <div className="movie-layout">
+        <div className="movie-columns">
+            <MoviePoster poster={poster} alt={title} />
         </div>
-    )
-}
+        <div className="movie-columns">
+            <h1>{title}</h1>
+            <div className="movie-genres">
+                { genres.map((genre, index) => <MovieGenre genre={genre} key={index} /> )}
+            </div>
+            <p className="Movie-synopsis">
+                <LinesEllipsis
+                    text= {synopsis}
+                    maxLine= '3'
+                    ellipsis= '...'
+                    trimRight
+                    basedOn= 'letters'
+                />
+            </p>
+        </div>
+    </div>
+);
 
-function MovieGenre({genre}){
-    return (
-        <span className="movie-genre">{genre}</span>
-    )
-}
+const MovieGenre = ({genre}) => (
+    <span className="movie-genre">{genre}</span>
+);
 
-function MoviePoster({poster, alt}){
-    return (
-        <img src={poster} alt={alt} title={alt} className="movie-poster" />
-    )
-}
+const MoviePoster = ({poster, alt}) => (
+    <img src={poster} alt={alt} title={alt} className="movie-poster" />
+);
 
 Movie.propTypes = {
     title: PropTypes.string.isRequired,
